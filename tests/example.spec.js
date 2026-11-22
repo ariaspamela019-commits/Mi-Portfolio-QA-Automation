@@ -21,5 +21,32 @@ test('login correcto', async ({ page }) => {await page.goto('https://the-interne
  await page.getByLabel('Username').fill('tomsmith');
 await page.getByLabel('Password').fill('SuperSecretPassword!');await page.getByRole('button', { name: 'Login' }).click();
  await expect(page.locator('h2')).toHaveText('Secure Area');
+ await expect(page).toHaveURL('https://the-internet.herokuapp.com/secure');
+ });
+
+test('login incorrecto', async ({ page }) => {
+    await page.goto('https://www.saucedemo.com/');
+    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await page.locator('[data-test="username"]').fill('usuario_incorrecto');
+    await page.locator('[data-test="password"]').fill('password_incorrecta');
+    await page.locator('[data-test="login-button"]').click();
+    await expect(page.locator('[data-test="error"]')).toBeVisible();
+    await expect(page.locator('[data-test="error"]')).toHaveText('Epic sadface: Username and password do not match any user in this service');
 });
-  
+
+test('login con campos vacios', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await expect(page.locator('[data-test="username"]')).toHaveValue('');
+  await expect(page.locator('[data-test="password"]')).toHaveValue('');
+  await page.locator('[data-test="login-button"]').click();
+  await expect(page.locator('[data-test="error"]')).toBeVisible();
+  await expect(page.locator('[data-test="error"]')).toBeVisible();
+  });
+
+  test('login con contraseña vacia', async ({ page }) => {
+await page.goto('https://www.saucedemo.com/');
+await page.locator('[data-test="username"]').fill('standard_user');
+await expect(page.locator('[data-test="password"]')).toHaveValue('');
+await page.locator('[data-test="login-button"]').click();
+await expect(page.locator('[data-test="error"]')).toBeVisible();
+});
