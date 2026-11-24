@@ -24,12 +24,20 @@ Actualmente incluye pruebas automatizadas de login utilizando Playwright y JavaS
 
 ### Casos de prueba automatizados
 
-- Verificación del título de una página.
+-- Verificación del título de una página.
 - Verificación de navegación mediante un enlace.
 - Login correcto.
 - Login con usuario y contraseña incorrectos.
 - Login con campos vacíos.
 - Login con contraseña vacía.
+- Agregar producto al carrito.
+- Eliminar producto del carrito.
+- Verificar nombre del producto en el carrito.
+- Verificar precio del producto en el carrito.
+- Verificar campos del checkout.
+- Checkout sin completar el nombre.
+- Checkout con datos correctos.
+- Finalizar compra correctamente.
 
 ### Objetivos
 
