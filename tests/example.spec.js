@@ -91,7 +91,7 @@ test('verificar nombre del producto en el carrito', async ({ page }) => {
 
   await page.locator('.shopping_cart_link').click();
 
-  await expect(page.locator('.inventory_item_name')).toHaveText('Sauce Labs Backpack');
+  await expect(page.locator('.cart_item .inventory_item_name')).toHaveText('Sauce Labs Backpack');;
 });
 
 test('verificar precio del producto en el carrito', async ({ page }) => {
@@ -106,7 +106,7 @@ test('verificar precio del producto en el carrito', async ({ page }) => {
 
   await page.locator('.shopping_cart_link').click();
 
-  await expect(page.locator('.inventory_item_price')).toHaveText('$29.99');
+await expect(page.locator('.cart_item .inventory_item_price')).toHaveText('$29.99');
 });
 
 test('verificar campos del checkout', async ({ page }) => {
